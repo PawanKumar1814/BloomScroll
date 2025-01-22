@@ -1,3 +1,5 @@
+# Name : Narayanapu Pawan Kumar
+
 # Bloom Scroll
 
 Welcome to **Bloom Scroll**, a web application designed to inspire, motivate, and help users focus on their goals while maintaining a positive mindset. The platform features interactive animations, mood tracking, and activities tailored to your emotions, making it a unique and engaging experience.
