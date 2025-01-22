@@ -1,0 +1,390 @@
+/* bloomscroll.css */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #020e1cee;
+}
+
+/* Video container */
+.video-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Text overlay on the video */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+.text-overlay h1 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #f11d0e;
+    margin-bottom: 20px;
+}
+
+.text-overlay p {
+    font-size: 35px;
+    font-style: italic;
+    color: white;
+}
+
+/* Images container for interactive images */
+.images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+    height: 60vh;
+    overflow: hidden;
+}
+
+/* Button for rotating images */
+.rotate-button {
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+    background-color: #ec6547;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.rotate-button:hover {
+    background-color: #e74c3c;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.rotate-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 87, 51, 0.5);
+}
+
+/* Cyclone-like rotation container */
+.sphere {
+    width: 800px;
+    height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 650px;
+}
+
+.interactive-image {
+    width: 180px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    position: absolute;
+    cursor: pointer;
+    transition: transform 1s ease-in-out, opacity 0.5s ease;
+    opacity: 0.6;
+}
+
+.image1 { transform: rotateY(0deg) translateZ(350px); }
+.image2 { transform: rotateY(40deg) translateZ(350px); }
+.image3 { transform: rotateY(80deg) translateZ(350px); }
+.image4 { transform: rotateY(120deg) translateZ(350px); }
+.image5 { transform: rotateY(160deg) translateZ(350px); }
+.image6 { transform: rotateY(200deg) translateZ(350px); }
+.image7 { transform: rotateY(240deg) translateZ(350px); }
+.image8 { transform: rotateY(280deg) translateZ(350px); }
+.image9 { transform: rotateY(320deg) translateZ(350px); }
+
+.interactive-image:hover {
+    transform: scale(1.1) translateZ(400px);
+    opacity: 1;
+}
+
+.selected-image {
+    width: 250px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: transform 0.5s ease;
+    z-index: 3;
+    display: none;
+}
+
+.section-container {
+    padding: 50px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+}
+
+.section-container h2 {
+    font-size: 40px;
+    color: #FF5733;
+}
+
+.mood-tracker {
+    margin-top: 30px;
+}
+
+.mood-tracker button {
+    padding: 15px;
+    font-size: 20px;
+    background-color: #FF5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mood-image {
+    width: 200px;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mood-image:hover {
+    transform: scale(1.1);
+}
+
+/* Mood images container */
+.mood-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.mood-tracker button:hover {
+    background-color: #e74c3c;
+}
+
+/* Enhanced Activity Cards */
+.activities-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.activity-card {
+    background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+    border-radius: 20px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+}
+
+.activity-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.activity-card p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.done-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.done-button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+.done-button:disabled {
+    background-color: #c3e6cb;
+    color: #155724;
+    cursor: not-allowed;
+}
+
+.done-button:disabled:hover {
+    transform: none;
+}
+
+/* Congrats message */
+.congratulation-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #FF5733;
+    z-index: 10;
+    opacity: 0;
+    animation: celebration 3s ease-out forwards;
+}
+
+.celebration-icon {
+    font-size: 60px;
+}
+
+@keyframes celebration {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Section Container */
+.section-container {
+    background-color: var(--mood-color, #ffffff); /* Default to white if no mood is selected */
+    padding: 50px 0;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+  .footer-container {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-about, .footer-links, .footer-social {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+  }
+  
+  .footer-about h3, .footer-social h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  .footer-about p {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  
+  .footer-links ul li a:hover {
+    text-decoration: underline;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .social-icon {
+    width: 70px; /* Standard size for the icons */
+    height: 80px;
+    overflow: hidden; /* Keeps images within the circle */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  }
+  
+  .social-icons a:hover .social-icon {
+    transform: scale(1.2); /* Enlarges the icon slightly on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5); /* Adds a stronger shadow effect */
+    filter: brightness(1.2); /* Slightly brightens the icon */
+  }
+  
+  
+  .social-icons a {
+    display: inline-block;
+  }
+  
+
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.9em;
+  }
+  

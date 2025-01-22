@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Scroll</title>
+    <link rel="stylesheet" href="bloomscroll.css">
+</head>
+<body>
+
+    <!-- Video container -->
+    <div class="video-container">
+        <video muted autoplay loop>
+            <source src="0121.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+
+        <div class="text-overlay">
+            <h1>Welcome to Bloom Scroll</h1>
+            <p>Let your dreams blossom and achieve your goals.</p>
+        </div>
+    </div>
+
+    <div class="images-container">
+        <button class="rotate-button" onclick="rotateImages()">Tap to see your daily quote</button>
+
+        <div class="sphere" id="imageSphere">
+            <img src="pic1.jpeg" alt="Image 1" class="interactive-image image1" id="img1">
+            <img src="m0.jpeg" alt="Image 2" class="interactive-image image2" id="img2">
+            <img src="pic3.jpeg" alt="Image 3" class="interactive-image image3" id="img3">
+            <img src="m1.jpeg" alt="Image 4" class="interactive-image image4" id="img4">
+            <img src="m2.jpeg" alt="Image 5" class="interactive-image image5" id="img5">
+            <img src="m3.jpeg" alt="Image 6" class="interactive-image image6" id="img6">
+            <img src="m4.jpeg" alt="Image 7" class="interactive-image image7" id="img7">
+            <img src="m5.jpeg" alt="Image 8" class="interactive-image image8" id="img8">
+            <img src="m6.jpeg" alt="Image 9" class="interactive-image image9" id="img9">
+        </div>
+
+        <img id="selectedImage" src="" alt="Selected Image" class="selected-image">
+    </div>
+
+    <div class="section-container">
+        <h2>What's your mood today?</h2>
+        <div class="mood-container">
+            <img src="happy-boy-jumping-cartoon-character_1308-105365.avif" alt="Happy" class="mood-image" onclick="selectMood('happy')">
+            <img src="sad-boydepressed-boy-looking-lonely-600nw-739345237.webp" alt="Sad" class="mood-image" onclick="selectMood('sad')">
+            <img src="stress.jpeg" alt="Stressed" class="mood-image" onclick="selectMood('stressed')">
+            <img src="images (2).jpeg" alt="Motivated" class="mood-image" onclick="selectMood('motivated')">
+        </div>
+
+        <div class="activities-container" id="activitiesContainer">
+            <div class="activity-card" id="activityCard1">
+                <p id="activity1"></p>
+                <button class="done-button" id="done1" onclick="markAsDone(1)" style="display: none;">Mark as Done</button>
+            </div>
+            <div class="activity-card" id="activityCard2">
+                <p id="activity2"></p>
+                <button class="done-button" id="done2" onclick="markAsDone(2)" style="display: none;">Mark as Done</button>
+            </div>
+            <div class="activity-card" id="activityCard3">
+                <p id="activity3"></p>
+                <button class="done-button" id="done3" onclick="markAsDone(3)" style="display: none;">Mark as Done</button>
+            </div>
+        </div>
+
+        <div class="congratulation-message" id="congratulationMessage">
+            <span class="celebration-icon">🎉🎉🎉</span>
+            <p>Congratulations! You've completed all activities!</p>
+        </div>
+        
+        
+    </div>
+
+    <script>
+        let isRotating = false;
+
+        function rotateImages() {
+            if (isRotating) return;
+            isRotating = true;
+            const selectedImgElement = document.getElementById('selectedImage');
+            selectedImgElement.style.display = 'none';
+
+            const sphere = document.getElementById('imageSphere');
+            sphere.style.transition = 'none';
+            sphere.style.transform = 'rotateY(0deg)';
+            sphere.offsetHeight;
+            setTimeout(() => {
+                sphere.style.transition = 'transform 2s ease';
+                let rotations = 5;
+                let rotationDegrees = 360 * rotations;
+                sphere.style.transform = `rotateY(${rotationDegrees}deg)`;
+
+                setTimeout(() => {
+                    const images = ["pic1.jpeg", "m0.jpeg", "pic3.jpeg","m1.jpeg","m2.jpeg","m3.jpeg","m4.jpeg","m5.jpeg","m6.jpeg"];
+                    const randomImage = images[Math.floor(Math.random() * images.length)];
+                    selectedImgElement.src = randomImage;
+                    selectedImgElement.style.display = 'block';
+                    isRotating = false;
+                }, 2000);
+            }, 10);
+        }
+        function selectMood(mood) {
+            const activitiesContainer = document.getElementById('activitiesContainer');
+            const activity1 = document.getElementById('activity1');
+            const activity2 = document.getElementById('activity2');
+            const activity3 = document.getElementById('activity3');
+            const doneButtons = document.querySelectorAll('.done-button'); // Select all done buttons
+            const activityCards = document.querySelectorAll('.activity-card'); // Select all activity cards
+            const sectionContainer = document.querySelector('.section-container');
+            const moodTrackerTitle = document.querySelector('.section-container h2');
+
+            // Reset all activity cards and buttons
+            activityCards.forEach((card) => {
+                card.style.backgroundColor = ''; // Reset background
+                card.style.color = ''; // Reset text color
+                card.style.border = ''; // Reset border
+            });
+
+            doneButtons.forEach((button) => {
+                button.innerText = 'Mark as Done'; // Reset button text
+                button.disabled = false; // Enable the button
+                button.style.backgroundColor = ''; // Reset button color
+                button.style.color = ''; // Reset button text color
+                button.style.display = 'none'; // Hide buttons until mood is selected
+            });
+
+            let activities = [];
+            let titleColor = '';
+
+            // Set activities and colors based on mood
+            if (mood === 'happy') {
+                activities = [
+                    "Listen to your favorite song and dance!",
+                    "Call a friend and share a happy memory.",
+                    "Write down 3 things you're grateful for today."
+                ];
+                sectionContainer.style.backgroundColor = '#ffeb3b'; // Yellow
+                titleColor = '#f57c00'; // Darker yellow-orange
+            } else if (mood === 'sad') {
+                activities = [
+                    "Take a deep breath and meditate for 5 minutes.",
+                    "Write a letter to your future self.",
+                    "Watch a funny video or a motivational speech."
+                ];
+                sectionContainer.style.backgroundColor = '#3f51b5'; // Blue
+                titleColor = '#ffffff'; // White
+            } else if (mood === 'stressed') {
+                activities = [
+                    "Take a 10-minute walk outside to clear your mind.",
+                    "Try some light yoga or stretching exercises.",
+                    "Make a cup of tea and focus on your breathing."
+                ];
+                sectionContainer.style.backgroundColor = '#f44336'; // Red
+                titleColor = '#ffffff'; // White
+            } else if (mood === 'motivated') {
+                activities = [
+                    "Set a goal for the week and break it down into steps.",
+                    "Organize your workspace for productivity.",
+                    "Watch an inspiring video about success."
+                ];
+                sectionContainer.style.backgroundColor = '#4caf50'; // Green
+                titleColor = '#ffffff'; // White
+            }
+
+            // Set the title color
+            moodTrackerTitle.style.color = titleColor;
+
+            // Update the activities
+            activity1.innerText = activities[0];
+            activity2.innerText = activities[1];
+            activity3.innerText = activities[2];
+
+            // Show the "Mark as Done" buttons
+            doneButtons.forEach(button => button.style.display = 'inline-block');
+        }
+
+
+        function markAsDone(activityNumber) {
+            const activityCard = document.getElementById(`activityCard${activityNumber}`);
+            const button = document.getElementById(`done${activityNumber}`);
+
+            // Change the appearance of the activity card
+            activityCard.style.backgroundColor = '#d4edda'; // Light green
+            activityCard.style.color = '#155724'; // Dark green
+            activityCard.style.border = '2px solid #c3e6cb';
+
+            // Disable the button after marking as done
+            button.innerText = 'Done!';
+            button.disabled = true;
+            button.style.backgroundColor = '#c3e6cb'; // Match the card color
+            button.style.color = '#155724';
+
+            // Check if all activities are done
+            checkAllActivitiesDone();
+        }
+
+        function checkAllActivitiesDone() {
+            const doneButtons = document.querySelectorAll('.done-button');
+            const allDone = Array.from(doneButtons).every(button => button.disabled);
+
+            if (allDone) {
+                showCongratulations();
+            }
+        }
+
+        function showCongratulations() {
+            const congratulationMessage = document.getElementById('congratulationMessage');
+            congratulationMessage.style.display = 'block';
+            setTimeout(() => {
+                congratulationMessage.style.opacity = 1; // Trigger animation
+            }, 100);
+        }
+    </script>
+
+    <!-- About Us Container -->
+    <footer class="footer-container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <h3>About Us</h3>
+            <p>
+              At Bloom Scroll, we strive to inspire and empower people to reach their goals 
+              and live their best lives. Follow us on social media for daily motivation and updates!
+            </p>
+          </div>
+          <div class="footer-links">
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+              <a href="https://www.instagram.com" target="_blank">
+                <img src="./insta.jpeg" alt="Instagram Logo" class="social-icon">
+              </a>
+              <a href="https://www.youtube.com" target="_blank">
+                <img src="./yt.jpeg" alt="YouTube Logo" class="social-icon">
+              </a>
+              <a href="https://play.google.com" target="_blank">
+                <img src="./googleplaystore.jpeg" alt="Google Play Logo" class="social-icon">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Bloom Scroll. All rights reserved.</p>
+        </div>
+      </footer>
+      
+</body>
+</html>
